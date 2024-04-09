@@ -18,6 +18,7 @@ with open('members_info.txt', 'a') as file:
 
     food = input("What is your favourte dish? ")
     file.write(f"Faviourte dish: {food}\n")
+    
     destination = input("Enter your favorite traveling destination: ")
     file.write(f"Favorite Traveling Destination: {destination}\n")
 
@@ -25,8 +26,13 @@ with open('members_info.txt', 'a') as file:
     if have_pet.lower() == 'yes':
         pet_name = input("Enter your pet's name: ")
         file.write(f"Pet Name: {pet_name}\n")
+    
+    character = input("Who is your favourite fictional character? ")
+    file.write(f"Favourite Fictional Character: {character}\n")
 
     # Add a newline to separate each member's information
     file.write('\n')
 
 print("Member information has been stored to members_info.txt.")
+
+#Deena: added a character variable in dictionary
