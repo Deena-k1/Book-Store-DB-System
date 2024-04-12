@@ -35,4 +35,8 @@ with open('members_info.txt', 'a') as file:
 
 print("Member information has been stored to members_info.txt.")
 
+<<<<<<< HEAD
+#Salma
+=======
 #Deena: added a character variable in dictionary
+>>>>>>> main
