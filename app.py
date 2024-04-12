@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-#from db_utils import functions_we_made
+from db_utils import get_available_books
 
 app = Flask(__name__)
 
@@ -9,7 +9,12 @@ def home():
     return {"Hello": "world"}
 
 #display all books available
-@app.route("/bookavailable")
+@app.route("/booksavailable")
+def get_books():
+    res = get_available_books()
+    return jsonify(res)
+
+# http://127.0.0.1:5001//booksavailable
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
