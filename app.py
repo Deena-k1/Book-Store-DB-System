@@ -18,7 +18,7 @@ def home():
 @app.route("/purchase")
 
 # add customer review
-@app.route("/customerreview)
+@app.route("/customerreview")
            
 
 
