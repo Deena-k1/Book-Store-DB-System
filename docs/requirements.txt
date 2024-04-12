@@ -1,0 +1,6 @@
+mysql.connector
+Flask
+request
+jsonify
+json
+requests

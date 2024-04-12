@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-#from db_utils import functions_we_made
+from db_utils import get_all_waitlisted_books
 
 app = Flask(__name__)
 
@@ -13,6 +13,9 @@ def home():
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
+def get_waitlist():
+    res = get_all_waitlisted_books('waitlist')
+    return jsonify(res)
 
 #purchase a book
 @app.route("/purchase")

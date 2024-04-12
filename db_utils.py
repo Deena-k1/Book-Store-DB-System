@@ -19,6 +19,26 @@ def _connect_to_db(db_name):
 
 #functions to interact with SQL databases go here. Includes SQL queries
 
+def get_all_waitlisted_books(waitlistbooks):
+    waitlist = []
+    try: 
+        db_name = 'books?'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
+        
+        query = """
+            SELECT title, author, waitlistdays
+            FROM booktablename
+            WHERE waitlist = TRUE
+            """
+    except Exception:
+        raise DbConnectionError('Failed to fetch waitlist books')
+        
+    finally: 
+            if db_connection:
+                db_connection.close()
+            
 
 
 if __name__ == '__main__':
+    get_all_waitlisted_books('waitlist')
