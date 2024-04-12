@@ -1,0 +1,24 @@
+import mysql.connector
+from config import USER, PASSWORD, HOST
+
+class DbConnectionError(Exception):
+
+    pass
+
+
+def _connect_to_db(db_name):
+    cnx = mysql.connector.connect(
+        host=HOST,
+        user=USER,
+        password=PASSWORD,
+        auth_plugin='mysql_native_password',
+        database=db_name
+    )
+    return cnx
+
+
+#functions to interact with SQL databases go here. Includes SQL queries
+
+
+
+if __name__ == '__main__':
