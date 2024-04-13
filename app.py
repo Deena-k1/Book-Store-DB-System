@@ -26,6 +26,8 @@ def get_waitlist():
     waitlist_data = get_all_waitlisted_books()
     return jsonify(waitlist_data), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
+# http://127.0.0.1:5000/booksavailable
+
 #purchase a book
 @app.route("/purchase", methods=['POST'])
 def purchase_book():
