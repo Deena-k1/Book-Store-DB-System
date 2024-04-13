@@ -38,6 +38,9 @@ def update_stock():
 
     update_stock_quantity(book_id)
 
+    return jsonify({'Stock quantity updated successfully'}), 200
+
+
 
 
 
