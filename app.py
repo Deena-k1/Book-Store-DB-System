@@ -20,8 +20,8 @@ def get_books():
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
 def get_waitlist():
-    res = get_all_waitlisted_books('waitlist')
-    return jsonify(res)
+    waitlist_data = get_all_waitlisted_books()
+    return jsonify(waitlist_data), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 #purchase a book
 @app.route("/purchase", methods=['POST'])
