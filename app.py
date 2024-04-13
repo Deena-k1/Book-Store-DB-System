@@ -38,6 +38,7 @@ def purchase_book():
 
 #Function to update Quantity of book
 
+@app.route('/update_stock', methods=['PUT'])
 def update_stock():
     data = request.get_json()
     book_id = data.get('book_id')
