@@ -193,4 +193,3 @@ def get_available_books():
 
 if __name__ == '__main__':
     get_all_waitlisted_books('waitlist')
-    
