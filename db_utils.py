@@ -86,5 +86,9 @@ def add_purchase(customer_name, book_id, delivery):
             print("DB connection is closed")
 
 
+def update_stock_quantity(book_id):
+    try:
+
+
 if __name__ == '__main__':
     get_all_waitlisted_books('waitlist')

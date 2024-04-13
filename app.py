@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from db_utils import get_all_waitlisted_books, add_purchase
+from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity
 
 app = Flask(__name__)
 
