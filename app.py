@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 
-from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review, get_available_books
+from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review, get_available_books, add_reserve
 
 
 
@@ -18,7 +18,7 @@ def get_books():
     res = get_available_books()
     return jsonify(res)
 
-# http://127.0.0.1:5001//booksavailable
+# http://127.0.0.1:5000/booksavailable
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
@@ -26,7 +26,8 @@ def get_waitlist():
     waitlist_data = get_all_waitlisted_books()
     return jsonify(waitlist_data), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
-# http://127.0.0.1:5000/booksavailable
+
+# http://127.0.0.1:5000/waitlist
 
 #purchase a book
 @app.route("/purchase", methods=['POST'])

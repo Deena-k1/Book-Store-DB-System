@@ -32,7 +32,7 @@ def userOptionSelect(optionSelect):
     elif optionSelect == 'exit':
         print('Thanks for stopping by!')
     else: 
-        print('You have input an invalid option, please select one of the four choices')
+        print('You have input an invalid option, please select one of the valid choices')
 
 def run():
     print('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*')
