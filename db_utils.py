@@ -81,24 +81,34 @@ def add_purchase(customer_name, book_id, delivery):
         raise DbConnectionError("Failed to read data from DB")
 
     finally:
+     if db_connection:
+        db_connection.close()
+        print("DB connection is closed")
+
+
+ def update_stock_quantity(book_id):
+    try:
+     db_name = 'book_store_db'
+     db_connection = _connect_to_db(db_name)
+     cur = db_connection.cursor()
+
+     update_stock_query = """
+     UPDATE book_stock
+     SET stock_quantity = stock_quantity - 1
+     WHERE book_id = %s
+     """
+
+     cur.execute(update_stock_query, (book_id,))
+     db_connection.commit()
+     cur.close()
+
+    except Exception:
+        raise DbConnectionError("Failed to read data from DB")
+
+    finally:
         if db_connection:
             db_connection.close()
             print("DB connection is closed")
-
-
-def update_stock_quantity(book_id):
-    try:
-        db_name = 'book_store_db.sql'
-        db_connection = _connect_to_db(db_name)
-        cur = db_connection.cursor()
-
-        update_stock_query= """"
-        UPDATE book_stock
-        SET stock_quantity = stock_quantity - 1
-        WHERE book_id = %s
-        
-        """
-
 
 if __name__ == '__main__':
     get_all_waitlisted_books('waitlist')
