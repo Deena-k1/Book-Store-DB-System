@@ -20,6 +20,7 @@ def _connect_to_db(db_name):
 
 #functions to interact with SQL databases go here. Includes SQL queries
 
+# Function to view all books that are waitlisted
 def get_all_waitlisted_books():
     waitlist = []
     try: 
@@ -45,8 +46,6 @@ def get_all_waitlisted_books():
             'waiting_days': row[3]
         })
 
-
-
     except Exception:
         raise DbConnectionError('Failed to fetch waitlist books')
         
@@ -57,10 +56,10 @@ def get_all_waitlisted_books():
     
     return waitlist
             
-
+# 
 def add_purchase(customer_name, book_id, delivery):
     try:
-        db_name = 'books?'
+        db_name = 'book_store_db'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
@@ -178,7 +177,7 @@ def reader_review(customer_name, book_id, rating,review_data):
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
     try:
-        db_name = 'tests'  # UPDATE THIS
+        db_name = 'book_store_db'  
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
