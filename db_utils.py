@@ -86,7 +86,7 @@ def add_purchase(customer_name, book_id, delivery):
         print("DB connection is closed")
 
 
- def update_stock_quantity(book_id):
+def update_stock_quantity(book_id):
     try:
      db_name = 'book_store_db'
      db_connection = _connect_to_db(db_name)

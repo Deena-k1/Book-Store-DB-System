@@ -1,3 +1,6 @@
+CREATE DATABASE book_store_db;
+USE book_store_db;
+
 CREATE TABLE books (
     book_id varchar (5)  PRIMARY KEY NOT NULL,
     title VARCHAR(40),
@@ -30,52 +33,49 @@ CREATE TABLE reviews (
     FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
 
-
-drop table  if exists orders;
 CREATE TABLE orders (
     date DATETIME,
     order_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     customer_name VARCHAR(40),
     book_id VARCHAR(5),
-    sales DECIMAL(10, 2),
     FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
 ALTER TABLE orders
 ADD delivery ENUM('yes', 'no') DEFAULT 'no';
 
 
-INSERT INTO orders (date, order_id, customer_name, book_id, sales)
+INSERT INTO orders (date, order_id, customer_name, book_id)
 VALUES
-('2024-01-15', 1, 'Amaleta Gwillym', 'b10', 12.50),
-('2024-01-23', 3, 'Philipa Gath', 'b4', 8.49),
-('2024-01-29', 27, 'Farrell Gusney', 'b9', 8.99),
-('2024-01-30', 24, 'Catherina Strover', 'b2', 8.49),
-('2024-02-16', 9, 'Latrena Welbeck', 'b8', 10.99),
-('2024-02-18', 17, 'Sherill McQuade', 'b4', 8.49),
-('2024-02-22', 8, 'Katherina Vuitton', 'b6', 8.99),
-('2024-02-22', 28, 'Garvey Krysztofowicz', 'b1', 18.99),
-('2024-02-23', 4, 'Marion Stronghill', 'b10', 12.50),
-('2024-02-24', 21, 'Stanley Giovannacci', 'b4', 8.49),
-('2024-02-25', 5, 'Odele Jzhakov', 'b5', 8.99),
-('2024-02-25', 18, 'Maighdiln Aked', 'b5', 8.99),
-('2024-02-28', 11, 'Oralle Powney', 'b11', 12.50),
-('2024-02-28', 12, 'Wenona Mepsted', 'b1', 18.99),
-('2024-02-29', 7, 'Elizabeth MacGown', 'b3', 19.82),
-('2024-03-04', 30, 'Bellina Treadgear', 'b5', 8.99),
-('2024-03-14', 16, 'Saidee Olivo', 'b3', 19.82),
-('2024-03-15', 25, 'Artur Wareham', 'b10', 12.50),
-('2024-03-15', 26, 'Aaren Giorgiutti', 'b5', 8.99),
-('2024-03-18', 2, 'Bowie Hince', 'b10', 12.50),
-('2024-03-22', 10, 'Gabe Leipold', 'b11', 12.50),
-('2024-03-27', 6, 'Leanor Trazzi', 'b8', 10.99),
-('2024-03-30', 19, 'Ingar Tellenbroker', 'b6', 8.99),
-('2024-04-01', 14, 'Adah Giacobazzi', 'b8', 10.99),
-('2024-04-02', 22, 'Byron Pontin', 'b4', 8.49),
-('2024-04-03', 20, 'Alfredo Warder', 'b2', 8.49),
-('2024-04-03', 15, 'Haskel Rootham', 'b2', 8.49),
-('2024-04-05', 29, 'Gawain Shinfield', 'b1', 18.99),
-('2024-04-09', 23, 'Priscella Sooper', 'b9', 8.99),
-('2024-04-10', 13, 'Randolf Baroc', 'b8', 10.99);
+('2024-01-15', 1, 'Amaleta Gwillym', 'b10'),
+('2024-01-23', 3, 'Philipa Gath', 'b4'),
+('2024-01-29', 27, 'Farrell Gusney', 'b9'),
+('2024-01-30', 24, 'Catherina Strover', 'b2'),
+('2024-02-16', 9, 'Latrena Welbeck', 'b8'),
+('2024-02-18', 17, 'Sherill McQuade', 'b4'),
+('2024-02-22', 8, 'Katherina Vuitton', 'b6'),
+('2024-02-22', 28, 'Garvey Krysztofowicz', 'b1'),
+('2024-02-23', 4, 'Marion Stronghill', 'b10'),
+('2024-02-24', 21, 'Stanley Giovannacci', 'b4'),
+('2024-02-25', 5, 'Odele Jzhakov', 'b5'),
+('2024-02-25', 18, 'Maighdiln Aked', 'b5'),
+('2024-02-28', 11, 'Oralle Powney', 'b11'),
+('2024-02-28', 12, 'Wenona Mepsted', 'b1'),
+('2024-02-29', 7, 'Elizabeth MacGown', 'b3'),
+('2024-03-04', 30, 'Bellina Treadgear', 'b5'),
+('2024-03-14', 16, 'Saidee Olivo', 'b3'),
+('2024-03-15', 25, 'Artur Wareham', 'b10'),
+('2024-03-15', 26, 'Aaren Giorgiutti', 'b5'),
+('2024-03-18', 2, 'Bowie Hince', 'b10'),
+('2024-03-22', 10, 'Gabe Leipold', 'b11'),
+('2024-03-27', 6, 'Leanor Trazzi', 'b8'),
+('2024-03-30', 19, 'Ingar Tellenbroker', 'b6'),
+('2024-04-01', 14, 'Adah Giacobazzi', 'b8'),
+('2024-04-02', 22, 'Byron Pontin', 'b4'),
+('2024-04-03', 20, 'Alfredo Warder', 'b2'),
+('2024-04-03', 15, 'Haskel Rootham', 'b2'),
+('2024-04-05', 29, 'Gawain Shinfield', 'b1'),
+('2024-04-09', 23, 'Priscella Sooper', 'b9'),
+('2024-04-10', 13, 'Randolf Baroc', 'b8');
  
  
  CREATE TABLE book_stock (
