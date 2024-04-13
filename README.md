@@ -13,7 +13,7 @@ Here is how we'd recommend working through those files:
 <!--- Add your GitHub username, link to page --->
 
 Kirstie Ross - [GitHub profile krossco](https://github.com/krossco)
-
+Lara Amusan - [GitHub profile larasacodes](https://github.com/larasacodes)
 
 
 
