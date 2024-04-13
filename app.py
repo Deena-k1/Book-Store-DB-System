@@ -60,7 +60,7 @@ def customer_review():
     # Call the function to add the review to the database
     reader_review(customer_name, book_id, rating)
 
-    return jsonify({'message': 'Review added successfully'}), 200
+    return jsonify({'message': 'Review added successfully'}), 200 
            
 
 
