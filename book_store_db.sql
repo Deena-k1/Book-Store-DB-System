@@ -30,6 +30,9 @@ CREATE TABLE orders (
     sales DECIMAL(10, 2),
     FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
+ALTER TABLE orders
+ADD delivery ENUM('yes', 'no') DEFAULT 'no';
+
 
 INSERT INTO orders (date, order_id, customer_name, book_id, sales)
 VALUES
