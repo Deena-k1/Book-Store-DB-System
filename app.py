@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from db_utils import get_all_waitlisted_books, add_purchase
+from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity
 
 app = Flask(__name__)
 
@@ -29,6 +29,21 @@ def purchase_book():
         delivery=purchase['delivery'],
     )
     return purchase
+
+#Update Quantity of book
+
+def update_stock():
+    data = request.get_json()
+    book_id = data.get('book_id')
+
+    update_stock_quantity(book_id)
+
+    return jsonify({'Stock quantity updated successfully'}), 200
+
+
+
+
+
 
 # add customer review
 @app.route("/customerreview")
