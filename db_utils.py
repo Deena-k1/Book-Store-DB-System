@@ -112,6 +112,49 @@ def update_stock_quantity(book_id):
 
 
 
+def all_books(): # this will retrieve all the book titles 
+    try:
+        db_name = 'book_store_db'
+        db_connection = _connect_to_db(book_store_db)
+        cur = db_connection.cursor()
+
+        get_books_query = """ SELECT book_id,
+          title FROM books;"""
+        cur.execute(get_books_query)
+        books = cur.fetchall()#returning them as tuples 
+        return books 
+    except mysql.connector.Error as error:
+        print("Error:", error)
+    finally: 
+       
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
+
+
+def reader_review(customer_name, book_id, rating,review_data):
+    try:
+        review_date = datetime.now().date()
+        db_name = 'book_store_db'
+        db_connection = _connect_to_db(book_store_db)
+        cur = db_connection.cursor()
+         # query that will insert a review from customer into the reviews table
+        
+        add_review_q = """
+            INSERT INTO reviews (customer_name, book_id, rating, review_date)
+            VALUES (%s, %s, %s, %s)
+        """
+        review_data= (customer_name, book_id, rating, review_date)
+        cur.execute(add_review_q, review_data)
+        db_connection.commit()
+        
+    except mysql.connector.Error as error:
+        print("Error:", error)
+
+    finally:
+        if db_connection:
+
+
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
     try:
@@ -142,6 +185,7 @@ def get_available_books():
 
     finally:   #code to be executed anyway
         if db_connection:  #if connection to db successful, clost connection and print message
+
             db_connection.close()
             print("DB connection is closed")
 
@@ -149,3 +193,4 @@ def get_available_books():
 
 if __name__ == '__main__':
     get_all_waitlisted_books('waitlist')
+    
