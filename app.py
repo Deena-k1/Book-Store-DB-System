@@ -1,5 +1,10 @@
 from flask import Flask, jsonify, request
+<<<<<<< HEAD
 from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review
+=======
+from db_utils import get_available_books, get_all_waitlisted_books, add_purchase, update_stock_quantity
+
+>>>>>>> 552cb9bdedba8be9f7085410abab265fc28eeb5b
 
 app = Flask(__name__)
 
@@ -9,7 +14,12 @@ def home():
     return {"Hello": "world"}
 
 #display all books available
-@app.route("/bookavailable")
+@app.route("/booksavailable")
+def get_books():
+    res = get_available_books()
+    return jsonify(res)
+
+# http://127.0.0.1:5001//booksavailable
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
@@ -60,7 +70,7 @@ def customer_review():
     # Call the function to add the review to the database
     reader_review(customer_name, book_id, rating)
 
-    return jsonify({'message': 'Review added successfully'}), 200 
+    return jsonify({'message': 'Review added successfully'}), 200  
            
 
 
