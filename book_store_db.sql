@@ -19,6 +19,16 @@ INSERT INTO books (book_id, title, author, price, year, review) VALUES
 ('b9', 'A Little Life', 'Hanya Yanagihara', 10.99, 2016, null),
 ('b10', 'Small Pleasures', 'Clare Chambers', 8.99, 2021, null),
 ('b11', 'Thinking, Fast and Slow', 'Daniel Kahneman', 12.50, 2012, null);
+ALTER TABLE books DROP COLUMN review;
+
+CREATE TABLE reviews (
+    review_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_name VARCHAR(40),
+    book_id VARCHAR(5),
+    rating INT,
+    review_date DATE,
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+);
 
 
 drop table  if exists orders;
