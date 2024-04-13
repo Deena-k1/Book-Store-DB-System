@@ -16,7 +16,7 @@ Kirstie Ross - [GitHub profile krossco](https://github.com/krossco)
 
 Lara Amusan - [GitHub profile larasacodes](https://github.com/larasacodes)
 
-Salma Mounes - https://github.com/salma3385
+Salma Mounes - [Github profile salma3385] (https://github.com/salma3385)
 
 
 
