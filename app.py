@@ -36,6 +36,8 @@ def update_stock():
     data = request.get_json()
     book_id = data.get('book_id')
 
+    update_stock_quantity(book_id)
+
 
 
 
