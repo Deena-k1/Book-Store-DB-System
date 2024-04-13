@@ -133,7 +133,7 @@ def update_stock_quantity(book_id):
 def all_books(): # this will retrieve all the book titles 
     try:
         db_name = 'book_store_db'
-        db_connection = _connect_to_db(book_store_db)
+        db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
 
         get_books_query = """ SELECT book_id,
@@ -154,7 +154,7 @@ def reader_review(customer_name, book_id, rating,review_data):
     try:
         review_date = datetime.now().date()
         db_name = 'book_store_db'
-        db_connection = _connect_to_db(book_store_db)
+        db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
          # query that will insert a review from customer into the reviews table
         
@@ -171,6 +171,8 @@ def reader_review(customer_name, book_id, rating,review_data):
 
     finally:
         if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
 
 
 #function to get all records for books currently available and not on waitlist
