@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 
-from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review, get_available_books, add_reserve
+from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review, get_available_books
 
 
 
@@ -52,9 +52,6 @@ def update_stock():
     update_stock_quantity(book_id)
 
     return jsonify({'Stock quantity updated successfully'}), 200
-
-
-
 
 
 
