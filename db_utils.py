@@ -88,6 +88,9 @@ def add_purchase(customer_name, book_id, delivery):
 
 def update_stock_quantity(book_id):
     try:
+        db_name = 'book_store_db.sql'
+        db_connection = _connect_to_db(db_name)
+        cur = db_connection.cursor()
 
 
 if __name__ == '__main__':
