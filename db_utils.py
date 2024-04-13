@@ -114,7 +114,7 @@ def add_purchase(customer_name, book_id, delivery):
 def all_books(): # this will retrieve all the book titles 
     try:
         db_name = 'book_store_db'
-        db_connection = _connect_to_db(book_store_db)
+        db_connection = _connect_to_db('book_store_db')
         cur = db_connection.cursor()
 
         get_books_query = """ SELECT book_id,

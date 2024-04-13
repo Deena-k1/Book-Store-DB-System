@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity
+from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review
 
 app = Flask(__name__)
 
@@ -46,7 +46,21 @@ def update_stock():
 
 
 # add customer review
-@app.route("/customerreview")
+@app.route("/customerreview", methods=['POST'])
+def customer_review():
+    review = request.get_json()
+    customer_name = review['customer_name']
+    book_id = review['book_id']
+    rating = int(review['rating'])  # Convert rating to integer
+
+    # Check if rating is within valid range
+    if rating < 1 or rating > 5:
+        return jsonify({'error': 'Rating must be between 1 and 5'}), 400
+
+    # Call the function to add the review to the database
+    reader_review(customer_name, book_id, rating)
+
+    return jsonify({'message': 'Review added successfully'}), 200
            
 
 
