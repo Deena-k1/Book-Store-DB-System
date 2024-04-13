@@ -30,7 +30,7 @@ def purchase_book():
     )
     return purchase
 
-#Update Quantity of book
+#Function to update Quantity of book
 
 def update_stock():
     data = request.get_json()
