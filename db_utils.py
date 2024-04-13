@@ -112,10 +112,10 @@ def update_stock_quantity(book_id):
 
 
 
-def all_books(): # this will retrieve all the book titles 
+def all_books(): # this will retrieve all the book titles to be used within reader_review() 
     try:
         db_name = 'book_store_db'
-        db_connection = _connect_to_db(book_store_db)
+        db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
 
         get_books_query = """ SELECT book_id,
@@ -136,7 +136,7 @@ def reader_review(customer_name, book_id, rating,review_data):
     try:
         review_date = datetime.now().date()
         db_name = 'book_store_db'
-        db_connection = _connect_to_db(book_store_db)
+        db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
          # query that will insert a review from customer into the reviews table
         
@@ -153,21 +153,23 @@ def reader_review(customer_name, book_id, rating,review_data):
 
     finally:
         if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
 
 
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
     try:
-        db_name = 'tests'  # UPDATE THIS
+        db_name = 'book_store_db' 
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
         #SQL query to select all books that are not on the waitlist
         query = """
-            SELECT book_id, title, author, date, stock_quantity, price 
-            FROM table_3 
-            WHERE waitlist = no
+            SELECT book_id, title, author, year, stock_quantity, price 
+            FROM books b
+            WHERE waitlist = FALSE
             """  # UPDATE TABLE NAME AND WHERE CLAUSE
         
         cur.execute(query)   #execute query within connection to db defined in cur
@@ -176,7 +178,7 @@ def get_available_books():
         
         #tranform tuple into a readable list
         for book in result:
-        print(F"Book ID: {book[0]}. {book[1]} by {book[2]}. Published {book[3]}. {book[4]} in stock. Price: {book[5]}")
+            print(F"Book ID: {book[0]}. {book[1]} by {book[2]}. Published {book[3]}. {book[4]} in stock. Price: {book[5]}")
       
         cur.close()
 
