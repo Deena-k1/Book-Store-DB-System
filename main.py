@@ -7,9 +7,9 @@ import json
 
 #run function that interacts with user in terminal
 
-def run():
+# def run():
 
 
 
-if __name__ == '__main__':
-    run()
+# if __name__ == '__main__':
+#     # run()
