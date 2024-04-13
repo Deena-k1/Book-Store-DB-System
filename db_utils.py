@@ -176,7 +176,7 @@ def reader_review(customer_name, book_id, rating,review_data):
 
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
-    available_books = []
+
     try:
         db_name = 'book_store_db'  
         db_connection = _connect_to_db(db_name)
@@ -194,20 +194,10 @@ def get_available_books():
         
         result = cur.fetchall()  # this is a list with db records where each record is a tuple
         
-        #tranform tuple into a readable list
-        # for book in result:
-        #     print(F"Book ID: {book[0]}. {book[1]} by {book[2]}. Published {book[3]}. {book[4]} in stock. Price: {book[5]}")
-      
-        # cur.close()
-        
-        for row in result:
-            available_books.append({
-            'book_id': row[0],
-            'title': row[1],
-            'author': row[2],
-            'stock_quantity': row[3],
-            'price': row[4]
-        })
+        # tranform tuple into a readable list
+        for book in result:
+            print(F"Book ID: {book[0]}. {book[1]} by {book[2]}. Published {book[3]}. {book[4]} in stock. Price: {book[5]}")
+
 
     except Exception:     #if any errors in try block raise this exception
         raise DbConnectionError("Failed to read data from DB")
