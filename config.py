@@ -1,3 +1,3 @@
 HOST = "localhost"
 USER = "root"
-PASSWORD = "Kyser747"
+PASSWORD = "PASSWORD"
