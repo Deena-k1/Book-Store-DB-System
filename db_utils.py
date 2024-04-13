@@ -167,10 +167,13 @@ def get_available_books():
 
         #SQL query to select all books that are not on the waitlist
         query = """
-            SELECT book_id, title, author, year, stock_quantity, price 
+            SELECT b.book_id, b.title, b.author, b.year, s.stock_quantity, b.price 
             FROM books b
-            WHERE waitlist = FALSE
-            """  # UPDATE TABLE NAME AND WHERE CLAUSE
+            INNER JOIN book_stock s
+            ON b.book_id = 
+            s.book_id
+            WHERE s.stock_quantity > 0
+            """
         
         cur.execute(query)   #execute query within connection to db defined in cur
         
@@ -178,7 +181,7 @@ def get_available_books():
         
         #tranform tuple into a readable list
         for book in result:
-            print(F"Book ID: {book[0]}. {book[1]} by {book[2]}. Published {book[3]}. {book[4]} in stock. Price: {book[5]}")
+            print(F"{book[1]} by {book[2]}. Published {book[3]}. Book ID: {book[0]}. {book[4]} in stock. Price: {book[5]}")
       
         cur.close()
 
@@ -186,13 +189,18 @@ def get_available_books():
         raise DbConnectionError("Failed to read data from DB")
 
     finally:   #code to be executed anyway
-        if db_connection:  #if connection to db successful, clost connection and print message
-
+        if db_connection:  #if connection to db successful, close connection and print message
             db_connection.close()
             print("DB connection is closed")
 
 
+def main():  
+    get_available_books()
+    get_all_waitlisted_books(waitlistbooks)
+    add_purchase(customer_name, book_id, delivery)
+    update_stock_quantity(book_id)
+    all_books()
 
 if __name__ == '__main__':
-    get_all_waitlisted_books('waitlist')
+    main()
     

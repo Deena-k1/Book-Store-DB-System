@@ -15,7 +15,7 @@ def get_books():
     res = get_available_books()
     return jsonify(res)
 
-# http://127.0.0.1:5001//booksavailable
+# http://127.0.0.1:5001/booksavailable
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
@@ -58,4 +58,4 @@ def update_stock():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
