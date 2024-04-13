@@ -33,6 +33,8 @@ def purchase_book():
 #Update Quantity of book
 
 def update_stock():
+    data = request.get_json()
+    book_id = data.get('book_id')
 
 
 
