@@ -138,8 +138,11 @@ def all_books(): # this will retrieve all the book titles to be used within read
         get_books_query = """ SELECT book_id,
           title FROM books;"""
         cur.execute(get_books_query)
-        books = cur.fetchall()#returning them as tuples 
-        return books 
+        result = cur.fetchall()#returning them as tuples 
+        for i in result:
+            print(i)
+        
+        cur.close
     except mysql.connector.Error as error:
         print("Error:", error)
     finally: 
@@ -169,9 +172,8 @@ def reader_review(customer_name, book_id, rating,review_data):
         print("Error:", error)
 
     finally:
-        if db_connection:
-            db_connection.close()
-            print("DB connection is closed")
+        if _connect_to_db('book_store_db'):
+            cur.close()
 
 
 #function to get all records for books currently available and not on waitlist
