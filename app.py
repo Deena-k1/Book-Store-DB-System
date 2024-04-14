@@ -1,9 +1,5 @@
 from flask import Flask, jsonify, request
-
 from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review, get_available_books
-
-
-
 
 app = Flask(__name__)
 
@@ -19,7 +15,7 @@ def get_books():
     return jsonify(res)
 
 
-# http://127.0.0.1:5001/booksavailable
+# endpoint: http://127.0.0.1:5001/booksavailable
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
@@ -74,5 +70,7 @@ def customer_review():
 
     return jsonify({'message': 'Review added successfully'}), 200
 
-    app.run(debug=True, port=5000)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)
 
