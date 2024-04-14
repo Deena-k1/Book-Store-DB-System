@@ -1,20 +1,13 @@
 import requests
 import json
-from db_utils import get_available_books
-
-from db_utils import get_all_waitlisted_books, all_books, reader_review, update_stock_quantity
+from db_utils import get_all_waitlisted_books, all_books, reader_review, update_stock_quantity, get_available_books
 
 ### Functions to connect to app endpoints with user input ###
-
 
 def get_available_books_data():
         endpoint = 'http://127.0.0.1:5001/booksavailable'
         response = requests.get(endpoint)   #get response from endpoint using requests module
-        
-        return response.json()   #convert to json format
-
-
-
+        return response.json()  #convert to json format
 
 # function to add a new book order to the database
 def add_new_order(customer_name, book_id, delivery):
@@ -36,16 +29,13 @@ def add_new_order(customer_name, book_id, delivery):
 
     if result.status_code == 200:
         update_stock_quantity(book_id)
-    return result.json()
-
-
-### Functions to be used in run()     
+    return result.json()    
 
 #function to transform available books data into a readable list
 def display_available_books():
-    books = get_available_books()    #assign result from endpoint as variable books
+    books = get_available_books_data()    #assign result from endpoint as variable books
     for book in books:    #iterate through data from endpoint
-            print(F"{book['title']} by {book['author']}. Published {book['year']}. Book ID: {book['book_id']}. {book['stock_quantity']} in stock. Price: £{book['price']}\n")  #insert data from enpoint into a readable string
+            print(F"{book['title']} by {book['author']}.\nPublished {book['year']}. Book ID: {book['book_id']}. Currently {book['stock_quantity']} in stock. Price: £{book['price']}\n")  #insert data from enpoint into a readable string
 
 
 ### Run function that interacts with user in terminal ###
@@ -95,13 +85,8 @@ def userOptionSelect(optionSelect):
             print('Thanks for viewing our waitlist')
             print()
     elif optionSelect == 'view':
-        # Add view books functionality here
-
-            books = get_available_books_data()    #assign result from endpoint as variable books
-            for book in books:    #iterate through data from endpoint
-                print(F"{book['title']} by {book['author']}. Published {book['year']}. Book ID: {book['book_id']}. {book['stock_quantity']} in stock. Price: £{book['price']}\n")
-
-
+       print("\nOur books: \n")
+       display_available_books()
     # purchase books functionality:
     elif optionSelect == 'purchase':
         cust = input('Enter your name: ')
