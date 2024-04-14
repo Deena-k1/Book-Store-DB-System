@@ -101,5 +101,6 @@ VALUES
 ('b10', 8, FALSE, NULL, NULL),
 ('b11', 3, TRUE, '2024-05-06 09:30', 25);
 
-select * from book_stock;
+-- Run to check that tables have been successfully updated afte running the main.py file 
+SELECT * from book_stock;
 SELECT * FROM orders;
