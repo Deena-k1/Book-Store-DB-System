@@ -100,7 +100,6 @@ def add_purchase(customer_name, book_id, delivery):
     finally:
      if db_connection:
         db_connection.close()
-        print("DB connection is closed")
 
 
 def update_stock_quantity(book_id):
@@ -149,7 +148,6 @@ def all_books(): # this will retrieve all the book titles to be used within read
        
         if db_connection:
             db_connection.close()
-            print("DB connection is closed")
 
 
 def reader_review(customer_name, book_id, rating,review_data):
@@ -207,24 +205,29 @@ def get_available_books():
         
         return book_data
       
-        cur.close()
+
 
     except Exception:     #if any errors in try block raise this exception
         raise DbConnectionError("Failed to read data from DB")
 
     finally:   #code to be executed anyway
         if db_connection:  #if connection to db successful, close connection and print message
+            cur.close()
             db_connection.close()
             print("DB connection is closed")
 
 
 def main():  
-    # print(get_available_books())
-    # get_all_waitlisted_books()
-    # add_purchase('Frank Jones', 'b5', 'yes')
-    # update_stock_quantity('b5')
-    # all_books()
-    # reader_review('Frank Jones', 'b2', 5, 2024-4-14)
+    get_available_books()
+    get_all_waitlisted_books()
+    add_purchase()
+    reader_review()
+    update_stock_quantity()
+    all_books()
 
 if __name__ == '__main__':
     main()
+    
+    
+    # add_purchase(customer_name, book_id, delivery)
+    # update_stock_quantity(book_id)
