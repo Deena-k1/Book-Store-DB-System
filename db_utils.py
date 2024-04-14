@@ -188,16 +188,15 @@ def reader_review(customer_name, book_id, rating):
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
     try:
+        book_data = []
 
         db_name = 'book_store_db' 
         db_connection = _connect_to_db(db_name)   #connects to mysql database book_store_db
-
         cur = db_connection.cursor()
         # print("Connected to DB: %s" % db_name)
 
         #SQL query to select all books that are in stock
         query = """
-
             SELECT b.book_id, b.title, b.author, b.year, s.stock_quantity, b.price 
             FROM books b
             INNER JOIN book_stock s
@@ -205,32 +204,23 @@ def get_available_books():
             s.book_id
             WHERE s.stock_quantity > 0
             """
-
-        
         cur.execute(query)   #execute sql query within connection to db
-        
         result = cur.fetchall()  # this is a list with db records where each record is a tuple
-        
 
-        # tranform tuple into dictionaries
-        book_data = []    #create empty list
+        # tranform tuples into dictionaries
         for row in result:   #iterate over each row in the result frrom sql query
             book = {"book_id":row[0], "title":row[1], "author":row[2], "year":row[3], "stock_quantity":row[4], "price":row[5]} #transform each record into a dictionary with their column name as key
             book_data.append(book)   #add dictionary object of each book record into book_data list
         
+        cur.close()   #close db
+
         return book_data
-      
-
-
-
+        
     except Exception:     #if any errors in try block raise this exception
-        raise DbConnectionError("Failed to read data from DB")
+        raise DbConnectionError("Failed to read books data from DB")
 
     finally:   #code to be executed anyway
-
         if db_connection:  #if connection to db successful, close connection and print message
-            cur.close()
-
             db_connection.close()
             print("DB connection is closed")
 
@@ -238,11 +228,11 @@ def get_available_books():
 
 def main():  
     print(get_available_books())
-    get_all_waitlisted_books()
-    add_purchase()
-    update_stock_quantity()
-    all_books()
-    reader_review()
+    # get_all_waitlisted_books()
+    # add_purchase('Frank Jones', 'b5', 'yes')
+    # update_stock_quantity('b5')
+    # all_books()
+    # reader_review('Frank Jones', 'b2', 5, 2024-4-14)
 
 if __name__ == '__main__':
     main()
