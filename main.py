@@ -5,7 +5,7 @@ from db_utils import get_all_waitlisted_books, all_books, reader_review, update_
 ### Functions to connect to app endpoints with user input ###
 
 def get_available_books_data():
-        endpoint = 'http://127.0.0.1:5001/booksavailable'
+        endpoint = 'http://127.0.0.1:5000/booksavailable'
         response = requests.get(endpoint)   #get response from endpoint using requests module
         return response.json()  #convert to json format
 
@@ -21,7 +21,7 @@ def add_new_order(customer_name, book_id, delivery):
     # post request adds a new row to the database
     result = requests.post(
 
-        'http://127.0.0.1:5001/purchase',  # goes to the endpoint in app.py for the link
+        'http://127.0.0.1:5000/purchase',  # goes to the endpoint in app.py for the link
         headers={'content-type': 'application/json'},
         data=json.dumps(new_order)
     )
@@ -82,8 +82,8 @@ def userOptionSelect(optionSelect):
             print("Waitlist Date:", book['waitlist_date'])
             print("Waiting Days:", book['waiting_days'])
             print()
-            print('Thanks for viewing our waitlist')
-            print()
+        print('Thanks for viewing our waitlist')
+        print()
     elif optionSelect == 'view':
        print("\nOur books: \n")
        display_available_books()

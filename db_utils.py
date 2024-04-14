@@ -36,7 +36,6 @@ def get_all_waitlisted_books():
             
         cur.execute(query)
         
-        print("{:<30} {:<30} {:<20} {:<15}".format('Title', 'Author', 'Waitlist Date', 'Days until in stock'))
         
         result = cur.fetchall()  
         for row in result:
@@ -47,8 +46,6 @@ def get_all_waitlisted_books():
             'waiting_days': row[3]
         })
 
-
-            print("{:<30} {:<30} {:<20} {:<15}".format(row[0], row[1], row[2], row[3]))
         
     except Exception:
         raise DbConnectionError('Failed to fetch waitlist books')
@@ -66,7 +63,7 @@ def add_purchase(customer_name, book_id, delivery):
         db_name = 'book_store_db'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
-        print("Connected to DB: %s" % db_name)
+        
 
         # generating the current date
         date = datetime.now().date().strftime('%Y-%m-%d')
@@ -128,7 +125,7 @@ def update_stock_quantity(book_id):
     finally:
         if db_connection:
             db_connection.close()
-            print("DB connection is closed")
+            # print("DB connection is closed")
 
 
 
@@ -222,17 +219,17 @@ def get_available_books():
     finally:   #code to be executed anyway
         if db_connection:  #if connection to db successful, close connection and print message
             db_connection.close()
-            print("DB connection is closed")
+            # print("DB connection is closed")
 
 
 
 def main():  
     print(get_available_books())
-    # get_all_waitlisted_books()
-    # add_purchase('Frank Jones', 'b5', 'yes')
-    # update_stock_quantity('b5')
-    # all_books()
-    # reader_review('Frank Jones', 'b2', 5, 2024-4-14)
+    get_all_waitlisted_books()
+    add_purchase()
+    update_stock_quantity()
+    all_books()
+    reader_review()
 
 if __name__ == '__main__':
     main()
