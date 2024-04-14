@@ -77,7 +77,7 @@ VALUES
 ('2024-04-09', 23, 'Priscella Sooper', 'b9'),
 ('2024-04-10', 13, 'Randolf Baroc', 'b8');
  
- 
+DROP TABLE book_stock;
  CREATE TABLE book_stock (
     book_id VARCHAR (5),
     stock_quantity INT,
@@ -89,17 +89,17 @@ VALUES
 
 INSERT INTO book_stock (book_id, stock_quantity, waitlist, waitlist_date, waiting_days)
 VALUES
-('b1', 10, FALSE, '2024-04-30 12:00', 20),
-('b2', 5, TRUE, '2024-05-06 08:00', 25),
-('b3', 0, FALSE, NULL, NULL),
-('b4', 3, TRUE, '2024-05-05 10:00', 25),
+('b1', 10, FALSE, NULL, NULL),
+('b2', 0, TRUE, '2024-05-06 08:00', 25),
+('b3', 16, FALSE, NULL, NULL),
+('b4', 0, TRUE, '2024-05-05 10:00', 25),
 ('b5', 7, FALSE, NULL, NULL),
-('b6', 2, TRUE, '2024-05-10 13:45', 20),
-('b7', 0, FALSE, NULL, NULL),
-('b8', 1, FALSE, NULL, NULL),
-('b9', 4, TRUE, '2024-05-01 16:30', 20),
+('b6', 0, TRUE, '2024-05-10 13:45', 20),
+('b7', 17, FALSE, NULL, NULL),
+('b8', 6, FALSE, NULL, NULL),
+('b9', 0, TRUE, '2024-05-01 16:30', 20),
 ('b10', 8, FALSE, NULL, NULL),
-('b11', 3, TRUE, '2024-05-06 09:30', 25);
+('b11', 0, TRUE, '2024-05-06 09:30', 25);
 
 -- Run to check that tables have been successfully updated afte running the main.py file 
 SELECT * from book_stock;

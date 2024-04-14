@@ -54,10 +54,6 @@ def update_stock():
     return jsonify({'Stock quantity updated successfully'}), 200
 
 
-
-
-
-
 #add customer review
 @app.route("/customerreview", methods=['POST'])
            
