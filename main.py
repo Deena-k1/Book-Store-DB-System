@@ -1,11 +1,32 @@
-# import requests
-# import json
+import requests
+import json
+
 from db_utils import get_all_waitlisted_books
 
-#functions to connect to app endpoints with user input
+### Functions to connect to app endpoints with user input ###
 
 
-#run function that interacts with user in terminal
+
+# function to add a new book order to the database
+def add_new_order(customer_name, book_id, delivery):
+
+    new_order = {
+         "customer_name": customer_name,
+         "book_id": book_id,
+         "delivery": delivery,
+    }
+
+    # post request adds a new row to the database
+    result = requests.post(
+        'http://127.0.0.1:5000/purchase',  # goes to the endpoint in app.py for the link
+        headers={'content-type': 'application/json'},
+        data=json.dumps(new_order)
+    )
+
+    return result.json()
+
+
+### Run function that interacts with user in terminal ###
 
 
 
@@ -23,8 +44,16 @@ def userOptionSelect(optionSelect):
     elif optionSelect == 'view':
         # Add view books functionality here
         pass
+    # purchase books functionality:
     elif optionSelect == 'purchase':
-        # Add purchase functionality here
+        cust = input('Enter your name: ')
+        book_order_id = input('Enter the book ID of the book you would like to purchase: ')
+        shipping = input('Choose if you would like the book to be delivered (yes/no): ')
+        add_new_order(cust, book_order_id, shipping)
+        print("Order is Successful")
+        print()
+        print('Thank you for your order!')
+
         pass
     elif optionSelect == 'review':
         # Add review functionality here
