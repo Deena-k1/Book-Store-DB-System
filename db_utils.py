@@ -20,29 +20,46 @@ def _connect_to_db(db_name):
 
 #functions to interact with SQL databases go here. Includes SQL queries
 
-def get_all_waitlisted_books(waitlistbooks):
+# Function to view all books that are waitlisted
+def get_all_waitlisted_books():
     waitlist = []
     try: 
-        db_name = 'books?'
+        db_name = 'book_store_db'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         
         query = """
-            SELECT title, author, waitlistdays
-            FROM booktablename
+            SELECT b.title, b.author, s.waitlist_date, s.waiting_days
+            FROM books b
+            JOIN book_stock s ON b.book_id = s.book_id
             WHERE waitlist = TRUE
             """
+            
+        cur.execute(query)
+        
+        result = cur.fetchall()  
+        for row in result:
+            waitlist.append({
+            'title': row[0],
+            'author': row[1],
+            'waitlist_date': row[2],
+            'waiting_days': row[3]
+        })
+
     except Exception:
         raise DbConnectionError('Failed to fetch waitlist books')
         
     finally: 
-            if db_connection:
-                db_connection.close()
+        if db_connection:
+            cur.close()
+            db_connection.close()
+    
+    return waitlist
             
-
+# 
 def add_purchase(customer_name, book_id, delivery):
     try:
-        db_name = 'books?'
+        db_name = 'book_store_db'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
@@ -159,8 +176,11 @@ def reader_review(customer_name, book_id, rating,review_data):
 
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
+
     try:
+
         db_name = 'book_store_db' 
+  
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
@@ -179,7 +199,7 @@ def get_available_books():
         
         result = cur.fetchall()  # this is a list with db records where each record is a tuple
         
-        #tranform tuple into a readable list
+        # tranform tuple into a readable list
         for book in result:
             print(F"{book[1]} by {book[2]}. Published {book[3]}. Book ID: {book[0]}. {book[4]} in stock. Price: {book[5]}")
       
@@ -203,4 +223,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    

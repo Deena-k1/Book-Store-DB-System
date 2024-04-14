@@ -1,5 +1,8 @@
 from flask import Flask, jsonify, request
-from db_utils import get_available_books, get_all_waitlisted_books, add_purchase, update_stock_quantity
+
+from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review, get_available_books
+
+
 
 
 app = Flask(__name__)
@@ -15,13 +18,17 @@ def get_books():
     res = get_available_books()
     return jsonify(res)
 
+
 # http://127.0.0.1:5001/booksavailable
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
 def get_waitlist():
-    res = get_all_waitlisted_books('waitlist')
-    return jsonify(res)
+    waitlist_data = get_all_waitlisted_books()
+    return jsonify(waitlist_data), 200, {'Content-Type': 'application/json; charset=utf-8'}
+
+
+# http://127.0.0.1:5001/waitlist
 
 #purchase a book
 @app.route("/purchase", methods=['POST'])
@@ -49,13 +56,23 @@ def update_stock():
 
 
 
-
-
-
 # add customer review
-@app.route("/customerreview")
+@app.route("/customerreview", methods=['POST'])
            
+def customer_review():
+    review = request.get_json()
+    customer_name = review['customer_name']
+    book_id = review['book_id']
+    rating = int(review['rating'])  # Convert rating to integer
 
+    # Check if rating is within valid range
+    if rating < 1 or rating > 5:
+        return jsonify({'error': 'Rating must be between 1 and 5'}), 400
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    # Call the function to add the review to the database
+    reader_review(customer_name, book_id, rating)
+
+    return jsonify({'message': 'Review added successfully'}), 200
+
+    app.run(debug=True, port=5000)
+
