@@ -6,6 +6,11 @@ from db_utils import get_all_waitlisted_books, all_books, reader_review
 
 ### Functions to connect to app endpoints with user input ###
 
+def get_available_books_data():
+        endpoint = 'http://127.0.0.1:5001/booksavailable'
+        response = requests.get(endpoint)   #get response from endpoint using requests module
+        
+        return response.json()   #convert to json format
 
 
 
@@ -27,6 +32,14 @@ def add_new_order(customer_name, book_id, delivery):
 
     return result.json()
 
+
+### Functions to be used in run()     
+
+#function to transform available books data into a readable list
+def display_available_books():
+    books = get_available_books_data()    #assign result from endpoint as variable books
+    for book in books:    #iterate through data from endpoint
+            print(F"{book['title']} by {book['author']}. Published {book['year']}. Book ID: {book['book_id']}. {book['stock_quantity']} in stock. Price: £{book['price']}\n")  #insert data from enpoint into a readable string
 
 ### Run function that interacts with user in terminal ###
 
@@ -97,6 +110,7 @@ def userOptionSelect(optionSelect):
     else: 
         print('You have input an invalid option, please select one of the valid choices')
 
+#ADD display_available_books() TO RUN()
 def run():
     print('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*')
     print('Welcome to ReadFirstGirls - your online bookstore')

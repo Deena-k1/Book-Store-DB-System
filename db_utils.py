@@ -6,7 +6,7 @@ class DbConnectionError(Exception):
 
     pass
 
-
+#function that uses mysql.connector to connect sql database to python using details in config file
 def _connect_to_db(db_name):
     cnx = mysql.connector.connect(
         host=HOST,
@@ -180,14 +180,12 @@ def reader_review(customer_name, book_id, rating,review_data):
 def get_available_books():
 
     try:
-
         db_name = 'book_store_db' 
-  
-        db_connection = _connect_to_db(db_name)
+        db_connection = _connect_to_db(db_name)   #connects to mysql database book_store_db
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
-        #SQL query to select all books that are not on the waitlist
+        #SQL query to select all books that are in stock
         query = """
             SELECT b.book_id, b.title, b.author, b.year, s.stock_quantity, b.price 
             FROM books b
@@ -197,13 +195,17 @@ def get_available_books():
             WHERE s.stock_quantity > 0
             """
         
-        cur.execute(query)   #execute query within connection to db defined in cur
+        cur.execute(query)   #execute sql query within connection to db
         
         result = cur.fetchall()  # this is a list with db records where each record is a tuple
         
-        # tranform tuple into a readable list
-        for book in result:
-            print(F"{book[1]} by {book[2]}. Published {book[3]}. Book ID: {book[0]}. {book[4]} in stock. Price: {book[5]}")
+        # tranform tuple into dictionaries
+        book_data = []    #create empty list
+        for row in result:   #iterate over each row in the result frrom sql query
+            book = {"book_id":row[0], "title":row[1], "author":row[2], "year":row[3], "stock_quantity":row[4], "price":row[5]} #transform each record into a dictionary with their column name as key
+            book_data.append(book)   #add dictionary object of each book record into book_data list
+        
+        return book_data
       
         cur.close()
 
@@ -217,11 +219,12 @@ def get_available_books():
 
 
 def main():  
-    get_available_books()
-    get_all_waitlisted_books(waitlistbooks)
-    add_purchase(customer_name, book_id, delivery)
-    update_stock_quantity(book_id)
-    all_books()
+    # print(get_available_books())
+    # get_all_waitlisted_books()
+    # add_purchase('Frank Jones', 'b5', 'yes')
+    # update_stock_quantity('b5')
+    # all_books()
+    # reader_review('Frank Jones', 'b2', 5, 2024-4-14)
 
 if __name__ == '__main__':
     main()
