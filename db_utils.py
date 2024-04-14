@@ -218,25 +218,12 @@ def get_available_books():
 
 
 def main():  
-<<<<<<< HEAD
-    print(get_available_books())
+    # print(get_available_books())
     # get_all_waitlisted_books()
     # add_purchase('Frank Jones', 'b5', 'yes')
     # update_stock_quantity('b5')
     # all_books()
     # reader_review('Frank Jones', 'b2', 5, 2024-4-14)
-=======
-    get_available_books()
-    get_all_waitlisted_books()
-    add_purchase()
-    reader_review()
-    update_stock_quantity()
-    all_books()
->>>>>>> 9f7002f7bea0e4f34036d503db1c866b5f482f3a
 
 if __name__ == '__main__':
     main()
-    
-    
-    # add_purchase(customer_name, book_id, delivery)
-    # update_stock_quantity(book_id)
