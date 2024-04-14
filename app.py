@@ -1,9 +1,5 @@
 from flask import Flask, jsonify, request
-
 from db_utils import get_all_waitlisted_books, add_purchase, update_stock_quantity, reader_review, get_available_books
-
-
-
 
 app = Flask(__name__)
 
@@ -19,13 +15,19 @@ def get_books():
     return jsonify(res)
 
 
-#http://127.0.0.1:5001//booksavailable
+
+# endpoint: http://127.0.0.1:5001/booksavailable
+
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
 def get_waitlist():
     waitlist_data = get_all_waitlisted_books()
     return jsonify(waitlist_data), 200, {'Content-Type': 'application/json; charset=utf-8'}
+
+
+# http://127.0.0.1:5001/waitlist
+
 
 #purchase a book
 @app.route("/purchase", methods=['POST'])
@@ -64,7 +66,10 @@ def customer_review():
     customer_name = review['customer_name']
     book_id = review['book_id']
     rating = int(review['rating'])  # Convert rating to integer
-    
+
+
+    # Check if rating is within valid range
+
     if rating is None or not isinstance(rating, int):
         return jsonify({'error': 'Rating must be an integer'}), 400
    
@@ -84,5 +89,7 @@ def customer_review():
         reader_review(customer_name, book_id, rating)
         return jsonify({'message': 'Review added successfully'}), 200
 
+
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
+
