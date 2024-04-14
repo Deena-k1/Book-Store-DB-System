@@ -20,6 +20,7 @@ Here is how we'd recommend working through those files:
 * **Salma Mounes** - [GitHub profile salma3385](https://github.com/salma3385)
 
 * **Deena Khan** - [GitHub profile Deena-k1](https://github.com/Deena-k1)
+* **Alexandria Kerr** - [GitHub profile AlexiaKerr](https://github.com/AlexiaKerr)
 
 ### Questions answered from Assignment: 
 
