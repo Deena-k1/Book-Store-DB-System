@@ -18,7 +18,8 @@ def get_books():
     res = get_available_books()
     return jsonify(res)
 
-# http://127.0.0.1:5000/booksavailable
+
+# http://127.0.0.1:5001/booksavailable
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
@@ -27,7 +28,7 @@ def get_waitlist():
     return jsonify(waitlist_data), 200, {'Content-Type': 'application/json; charset=utf-8'}
 
 
-# http://127.0.0.1:5000/waitlist
+# http://127.0.0.1:5001/waitlist
 
 #purchase a book
 @app.route("/purchase", methods=['POST'])
@@ -73,5 +74,5 @@ def customer_review():
 
     return jsonify({'message': 'Review added successfully'}), 200
 
-if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
