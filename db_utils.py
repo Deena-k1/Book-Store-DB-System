@@ -36,6 +36,8 @@ def get_all_waitlisted_books():
             
         cur.execute(query)
         
+        print("{:<30} {:<30} {:<20} {:<15}".format('Title', 'Author', 'Waitlist Date', 'Days until in stock'))
+        
         result = cur.fetchall()  
         for row in result:
             waitlist.append({
@@ -46,7 +48,8 @@ def get_all_waitlisted_books():
         })
 
 
-
+            print("{:<30} {:<30} {:<20} {:<15}".format(row[0], row[1], row[2], row[3]))
+        
     except Exception:
         raise DbConnectionError('Failed to fetch waitlist books')
         
@@ -160,7 +163,7 @@ def reader_review(customer_name, book_id, rating):
         db_name = 'book_store_db'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
-        print("Connected to DB: %s" % db_name)
+        # print("Connected to DB: %s" % db_name)
          # query that will insert a review from customer into the reviews table
         
         add_review_q = """
@@ -190,7 +193,7 @@ def get_available_books():
         db_connection = _connect_to_db(db_name)   #connects to mysql database book_store_db
 
         cur = db_connection.cursor()
-        print("Connected to DB: %s" % db_name)
+        # print("Connected to DB: %s" % db_name)
 
         #SQL query to select all books that are in stock
         query = """
@@ -234,12 +237,12 @@ def get_available_books():
 
 
 def main():  
-    # print(get_available_books())
-    # get_all_waitlisted_books()
-    # add_purchase('Frank Jones', 'b5', 'yes')
-    # update_stock_quantity('b5')
-    # all_books()
-    # reader_review('Frank Jones', 'b2', 5, 2024-4-14)
+    print(get_available_books())
+    get_all_waitlisted_books()
+    add_purchase()
+    update_stock_quantity()
+    all_books()
+    reader_review()
 
 if __name__ == '__main__':
     main()
