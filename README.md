@@ -80,3 +80,5 @@ To merge and deploy to the main branch, this can be done by either:
 ![6 Merging and deploying to main branch b](https://github.com/Deena-k1/Git.assignment/assets/153955602/63105ba1-953c-4d88-b6a7-aa40f7b4d82c)  
 <br>
 To view screenshots demonstrating the above and gathered from all group members, please refer to the ['screenshots'](https://github.com/Deena-k1/Git.assignment/tree/main/docs/screenshots) folder within the doc folder. 
+
+## Project Management ##
