@@ -41,4 +41,4 @@ localhost:127.0.0.1:500...
 |GET                           |.../waitlist                             |Display all books in the waitlist             |
 |POST                          | .../purchase                            |Purchase a book                               |
 |PUT                           |.../update_stock                         |Update stock after purchase                   |
-|Post                          |../customerreview                        |Add Customer review                           |
+|POST                          |../customerreview                        |Add Customer review                           |
