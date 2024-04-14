@@ -18,9 +18,8 @@ def _connect_to_db(db_name):
     return cnx
 
 
-#functions to interact with SQL databases go here. Includes SQL queries
+# #functions to interact with SQL databases go here. Includes SQL queries
 
-# Function to view all books that are waitlisted
 def get_all_waitlisted_books():
     waitlist = []
     try: 
@@ -46,6 +45,8 @@ def get_all_waitlisted_books():
             'waiting_days': row[3]
         })
 
+
+
     except Exception:
         raise DbConnectionError('Failed to fetch waitlist books')
         
@@ -56,7 +57,7 @@ def get_all_waitlisted_books():
     
     return waitlist
             
-# 
+
 def add_purchase(customer_name, book_id, delivery):
     try:
         db_name = 'book_store_db'
@@ -138,23 +139,30 @@ def all_books(): # this will retrieve all the book titles
         get_books_query = """ SELECT book_id,
           title FROM books;"""
         cur.execute(get_books_query)
-        books = cur.fetchall()#returning them as tuples 
-        return books 
+        result = cur.fetchall()#returning them as tuples 
+
+        for i in result:
+            print(i)
+        
+        cur.close
+    
+
     except mysql.connector.Error as error:
         print("Error:", error)
     finally: 
        
         if db_connection:
             db_connection.close()
-            print("DB connection is closed")
+            
 
 
-def reader_review(customer_name, book_id, rating,review_data):
+def reader_review(customer_name, book_id, rating):
     try:
-        review_date = datetime.now().date()
+        review_date = datetime.now().date() 
         db_name = 'book_store_db'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
+        print("Connected to DB: %s" % db_name)
          # query that will insert a review from customer into the reviews table
         
         add_review_q = """
@@ -164,21 +172,20 @@ def reader_review(customer_name, book_id, rating,review_data):
         review_data= (customer_name, book_id, rating, review_date)
         cur.execute(add_review_q, review_data)
         db_connection.commit()
-        
+        cur.close()
     except mysql.connector.Error as error:
         print("Error:", error)
 
     finally:
-        if db_connection:
-            db_connection.close()
-            print("DB connection is closed")
+        if _connect_to_db('book_store_db'):
+            cur.close()
+            print( "ɷ" * 25 )
 
 
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
-
     try:
-        db_name = 'book_store_db'  
+        db_name = 'book_store_db'  # UPDATE THIS
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
@@ -186,28 +193,30 @@ def get_available_books():
         #SQL query to select all books that are not on the waitlist
         query = """
             SELECT book_id, title, author, date, stock_quantity, price 
-            FROM books 
-            WHERE waitlist = FALSE
+            FROM table_3 
+            WHERE waitlist = no
             """  # UPDATE TABLE NAME AND WHERE CLAUSE
         
         cur.execute(query)   #execute query within connection to db defined in cur
         
         result = cur.fetchall()  # this is a list with db records where each record is a tuple
         
-        # tranform tuple into a readable list
+        #tranform tuple into a readable list
         for book in result:
             print(F"Book ID: {book[0]}. {book[1]} by {book[2]}. Published {book[3]}. {book[4]} in stock. Price: {book[5]}")
-
+      
+        cur.close()
 
     except Exception:     #if any errors in try block raise this exception
         raise DbConnectionError("Failed to read data from DB")
 
     finally:   #code to be executed anyway
         if db_connection:  #if connection to db successful, clost connection and print message
-            cur.close()
+
             db_connection.close()
             print("DB connection is closed")
 
 
-if __name__ == '__main__':
-    get_all_waitlisted_books('waitlist')
+def main():
+    if __name__ == '__main__':
+        main()
