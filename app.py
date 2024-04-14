@@ -15,7 +15,9 @@ def get_books():
     return jsonify(res)
 
 
+
 # endpoint: http://127.0.0.1:5001/booksavailable
+
 
 #display books on waitlist, how long until they arrive
 @app.route("/waitlist")
@@ -25,6 +27,7 @@ def get_waitlist():
 
 
 # http://127.0.0.1:5001/waitlist
+
 
 #purchase a book
 @app.route("/purchase", methods=['POST'])
@@ -52,7 +55,10 @@ def update_stock():
 
 
 
-# add customer review
+
+
+
+#add customer review
 @app.route("/customerreview", methods=['POST'])
            
 def customer_review():
@@ -61,7 +67,9 @@ def customer_review():
     book_id = review['book_id']
     rating = int(review['rating'])  # Convert rating to integer
 
+
     # Check if rating is within valid range
+
     if rating is None or not isinstance(rating, int):
         return jsonify({'error': 'Rating must be an integer'}), 400
    

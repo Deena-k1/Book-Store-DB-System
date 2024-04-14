@@ -18,9 +18,8 @@ def _connect_to_db(db_name):
     return cnx
 
 
-#functions to interact with SQL databases go here. Includes SQL queries
+# #functions to interact with SQL databases go here. Includes SQL queries
 
-# Function to view all books that are waitlisted
 def get_all_waitlisted_books():
     waitlist = []
     try: 
@@ -46,6 +45,8 @@ def get_all_waitlisted_books():
             'waiting_days': row[3]
         })
 
+
+
     except Exception:
         raise DbConnectionError('Failed to fetch waitlist books')
         
@@ -56,7 +57,7 @@ def get_all_waitlisted_books():
     
     return waitlist
             
-# 
+
 def add_purchase(customer_name, book_id, delivery):
     try:
         db_name = 'book_store_db'
@@ -138,10 +139,12 @@ def all_books(): # this will retrieve all the book titles to be used within read
           title FROM books;"""
         cur.execute(get_books_query)
         result = cur.fetchall()#returning them as tuples 
+
         for i in result:
             print(i)
         
         cur.close
+
     except mysql.connector.Error as error:
         print("Error:", error)
     finally: 
@@ -150,12 +153,14 @@ def all_books(): # this will retrieve all the book titles to be used within read
             db_connection.close()
 
 
-def reader_review(customer_name, book_id, rating,review_data):
+
+def reader_review(customer_name, book_id, rating):
     try:
-        review_date = datetime.now().date()
+        review_date = datetime.now().date() 
         db_name = 'book_store_db'
         db_connection = _connect_to_db(db_name)
         cur = db_connection.cursor()
+        print("Connected to DB: %s" % db_name)
          # query that will insert a review from customer into the reviews table
         
         add_review_q = """
@@ -165,7 +170,7 @@ def reader_review(customer_name, book_id, rating,review_data):
         review_data= (customer_name, book_id, rating, review_date)
         cur.execute(add_review_q, review_data)
         db_connection.commit()
-        
+        cur.close()
     except mysql.connector.Error as error:
         print("Error:", error)
 
@@ -173,18 +178,23 @@ def reader_review(customer_name, book_id, rating,review_data):
         if _connect_to_db('book_store_db'):
             cur.close()
 
+            print( "ɷ" * 25 )
+
+
 
 #function to get all records for books currently available and not on waitlist
 def get_available_books():
-
     try:
+
         db_name = 'book_store_db' 
         db_connection = _connect_to_db(db_name)   #connects to mysql database book_store_db
+
         cur = db_connection.cursor()
         print("Connected to DB: %s" % db_name)
 
         #SQL query to select all books that are in stock
         query = """
+
             SELECT b.book_id, b.title, b.author, b.year, s.stock_quantity, b.price 
             FROM books b
             INNER JOIN book_stock s
@@ -192,11 +202,13 @@ def get_available_books():
             s.book_id
             WHERE s.stock_quantity > 0
             """
+
         
         cur.execute(query)   #execute sql query within connection to db
         
         result = cur.fetchall()  # this is a list with db records where each record is a tuple
         
+
         # tranform tuple into dictionaries
         book_data = []    #create empty list
         for row in result:   #iterate over each row in the result frrom sql query
@@ -207,14 +219,18 @@ def get_available_books():
       
 
 
+
     except Exception:     #if any errors in try block raise this exception
         raise DbConnectionError("Failed to read data from DB")
 
     finally:   #code to be executed anyway
+
         if db_connection:  #if connection to db successful, close connection and print message
             cur.close()
+
             db_connection.close()
             print("DB connection is closed")
+
 
 
 def main():  
@@ -227,3 +243,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
