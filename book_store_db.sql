@@ -102,3 +102,4 @@ VALUES
 ('b11', 3, TRUE, '2024-05-06 09:30', 25);
 
 select * from book_stock;
+SELECT * FROM orders;

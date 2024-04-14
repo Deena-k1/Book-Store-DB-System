@@ -2,7 +2,7 @@ import requests
 import json
 from db_utils import get_available_books
 
-from db_utils import get_all_waitlisted_books, all_books, reader_review
+from db_utils import get_all_waitlisted_books, all_books, reader_review, update_stock_quantity
 
 ### Functions to connect to app endpoints with user input ###
 
@@ -25,11 +25,13 @@ def add_new_order(customer_name, book_id, delivery):
 
     # post request adds a new row to the database
     result = requests.post(
-        'http://127.0.0.1:5000/purchase',  # goes to the endpoint in app.py for the link
+        'http://127.0.0.1:5001/purchase',  # goes to the endpoint in app.py for the link
         headers={'content-type': 'application/json'},
         data=json.dumps(new_order)
     )
 
+    if result.status_code == 200:
+        update_stock_quantity(book_id)
     return result.json()
 
 
@@ -37,7 +39,7 @@ def add_new_order(customer_name, book_id, delivery):
 
 #function to transform available books data into a readable list
 def display_available_books():
-    books = get_available_books_data()    #assign result from endpoint as variable books
+    books = get_available_books()    #assign result from endpoint as variable books
     for book in books:    #iterate through data from endpoint
             print(F"{book['title']} by {book['author']}. Published {book['year']}. Book ID: {book['book_id']}. {book['stock_quantity']} in stock. Price: £{book['price']}\n")  #insert data from enpoint into a readable string
 
@@ -89,7 +91,10 @@ def userOptionSelect(optionSelect):
             print()
     elif optionSelect == 'view':
         # Add view books functionality here
-        pass
+            books = get_available_books_data()    #assign result from endpoint as variable books
+            for book in books:    #iterate through data from endpoint
+                print(F"{book['title']} by {book['author']}. Published {book['year']}. Book ID: {book['book_id']}. {book['stock_quantity']} in stock. Price: £{book['price']}\n")
+
     # purchase books functionality:
     elif optionSelect == 'purchase':
         cust = input('Enter your name: ')

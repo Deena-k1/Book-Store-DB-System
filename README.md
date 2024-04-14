@@ -29,3 +29,16 @@ Here is how we'd recommend working through those files:
 [requirements.txt](https://github.com/Deena-k1/Git.assignment/blob/main/docs/requirements.txt) - requirements.txt is a file that contains a list of packages or libraries needed to work on a project that can all be installed with the file. You can use the following code to install all the libraries and packages in the file:
 `pip install -r /path/to/requirements.txt`
 (Insert your own file path leading to the requirements.txt file) 
+
+
+
+
+## Routes ##
+localhost:127.0.0.1:500...
+|Request Type                  |HTTP Request Path                        | Description                                  |
+|:----------------------------:|:----------------------------------------|:---------------------------------------------|
+|GET                           |.../booksavailable                       |Display all books available                   |
+|GET                           |.../waitlist                             |Display all books in the waitlist             |
+|POST                          | .../purchase                            |Purchase a book                               |
+|PUT                           |.../update_stock                         |Update stock after purchase                   |
+|POST                          |../customerreview                        |Add Customer review                           |
