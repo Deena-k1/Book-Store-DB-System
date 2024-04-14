@@ -7,7 +7,10 @@
 Here is how we'd recommend working through those files: 
 - [HowToConfig](https://github.com/Deena-k1/Git.assignment/blob/main/docs/HowToConfig.md)
 - [SetUpDB](https://github.com/Deena-k1/Git.assignment/blob/main/docs/SetUpDB.md)
-- Continue with **README**
+- Continue with [**README**](https://github.com/Deena-k1/Git.assignment/blob/main/README.md)
+
+## What this project does, how to run it, and what it should do
+
 
 
 <!--- Add your GitHub username, link to page --->
