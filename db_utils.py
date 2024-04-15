@@ -102,13 +102,15 @@ def add_purchase(customer_name, book_id, delivery):
      if db_connection:
         db_connection.close()
 
-
+#Updates stock quantity and takes book_id as a parameter
 def update_stock_quantity(book_id):
     try:
      db_name = 'book_store_db'
      db_connection = _connect_to_db(db_name)
      cur = db_connection.cursor()
 
+#Decrements stock quantity by 1 for the given book_id
+        
      update_stock_query = """
      UPDATE book_stock
      SET stock_quantity = stock_quantity - 1
