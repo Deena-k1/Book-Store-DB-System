@@ -1,7 +1,3 @@
 mysql.connector
-Flask
-request
-jsonify
-json
+flask
 requests
-datetime
