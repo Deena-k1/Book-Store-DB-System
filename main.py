@@ -72,7 +72,8 @@ def handle_review():
         print('You have input an invalid option, please select one of the four choices')
 
 
-
+# This is our main function that will run through the logic of the users choices.
+# Using if elif else statements for the different options and to validate the user input as a correct option
 def userOptionSelect(optionSelect):
     if optionSelect == 'waitlist':
         waitlisted_books = get_all_waitlisted_books()
@@ -102,11 +103,11 @@ def userOptionSelect(optionSelect):
         else:
                 print("Book is unfortunately not available for purchase or out of stock.")   
 
-        pass
+    
     elif optionSelect == 'review':
         handle_review()
        
-        pass
+    
     elif optionSelect == 'exit':
         print('Thanks for stopping by!')
     else: 
