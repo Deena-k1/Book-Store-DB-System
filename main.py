@@ -42,32 +42,32 @@ def display_available_books():
 
 #function that will recieve review input from user 
 def handle_review():
-    print("\n" + "ɷ" * 25 + " Review a Book " + "ɷ" * 25)
+    print("\n" + "ɷ" * 25 + " Review a Book " + "ɷ" * 25) #printing a border for a bit of visualisation
     all_books()
-    valid_book_ids = [f'b{i}' for i in range(1, 12)]
-    print("\nPlease select a book to review:")
+    valid_book_ids = [f'b{i}' for i in range(1, 12)] # created a variable fore book id, since the book id was a string, validation posed an issue so I iterated through the int part
+    print("\nPlease select a book from our collection to review:")
     while True:
-        book_id = input("Enter the ID of the book you want to review, e.g., 'b1': ")
+        book_id = input("Please enter the ID of the book that you'd like to review, e.g., 'b1': ")
         if book_id in valid_book_ids:
             break
         else:
-            print("Invalid book ID. Please enter a valid book ID.")
+            print("Uh Oh! Invalid book ID. Please enter a valid book ID.")
 
-    customer_name = input("Enter your name: ")
+    customer_name = input("Please enter your name: ")
     while True:
         ratingstr = input("Enter your rating (1-5): ")
         try:
             rating = int(ratingstr)
-            if 1 <= rating <= 5:
+            if 1 <= rating <= 5:  #more data validation
                 break
             else:
-                print("Rating must be between 1 and 5.")
+                print("Book rating must be between 1 and 5.")# data validation that expects input to be between 1 and 5.
         except ValueError:
             print("Please enter a valid number")
 
     if rating >= 1 and rating <= 5: 
         reader_review(customer_name, book_id, rating)
-        print("Review added successfully!")  # Display success message
+        print("Review added successfully!")  # Display success message when correct input is submitted.
     else: 
         print('You have input an invalid option, please select one of the four choices')
 
