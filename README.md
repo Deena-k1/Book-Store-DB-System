@@ -87,8 +87,8 @@ To view screenshots demonstrating the above and gathered from all group members,
 ## Project Management ##
 Throughout this project we did a mixture of group programming, as well as working on our individual branches. In order to efficently complete out project we used forur tools: 
 
-*Slack - To communnicate with each other 
-*Word Doc - To brainstorm our ideas and set our meeting agenda 
-*Trello - To allocate tasks 
-*Zoom - To set up meetings 
+- Slack - To communnicate with each other 
+- Word Doc - To brainstorm our ideas and set our meeting agenda 
+- Trello - To allocate tasks 
+- Zoom - To set up meetings 
 
