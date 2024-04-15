@@ -62,7 +62,7 @@ def customer_review():
     rating = int(review['rating'])  # Convert rating to integer
 
 
-    # Check if rating is within valid range
+    # Check to see if the rating input is within valid range
 
     if rating is None or not isinstance(rating, int):
         return jsonify({'error': 'Rating must be an integer'}), 400
@@ -75,7 +75,7 @@ def customer_review():
                 raise ValueError("Rating must be between 1 and 5")
             break  # Exit the loop if rating is valid
         except ValueError:
-            print("Invalid rating. Please enter an integer between 1 and 5.")
+            print("Uh oh! Invalid rating. Please enter a number between 1 and 5.")
             rating = input("Enter your rating (1-5): ")
 
     # Call the function to add the review to the database
