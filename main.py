@@ -91,11 +91,16 @@ def userOptionSelect(optionSelect):
     elif optionSelect == 'purchase':
         cust = input('Enter your name: ')
         book_order_id = input('Enter the book ID of the book you would like to purchase: ')
-        shipping = input('Choose if you would like the book to be delivered (yes/no): ')
-        add_new_order(cust, book_order_id, shipping)
-        print("Order is Successful")
-        print()
-        print('Thank you for your order!')
+        
+        available_books = get_available_books()
+        if any(book['book_id'] == book_order_id and book['stock_quantity'] > 0 for book in available_books):
+                shipping = input('Choose if you would like the book to be delivered (yes/no): ')
+                add_new_order(cust, book_order_id, shipping)
+                print("Order is Successful")
+                print()
+                print('Thank you for your order!')
+        else:
+                print("Book is unfortunately not available for purchase or out of stock.")   
 
         pass
     elif optionSelect == 'review':
