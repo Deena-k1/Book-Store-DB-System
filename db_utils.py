@@ -140,7 +140,7 @@ def all_books(): # this will retrieve all the book titles to be used within read
         cur.execute(get_books_query)
         result = cur.fetchall()#returning them as tuples 
 
-        for i in result:
+        for i in result: #for loop to print the ids and names of all the books (return variable holds the output from the query)
             print(i)
         
         cur.close
