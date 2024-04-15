@@ -31,5 +31,18 @@ Step 4.
 
 Step. 5
 
-    Head to your IDE (VS Code / Pycharm etc) where you'll open the folder of your cloned repository
+    Head to your IDE (VS Code / Pycharm etc) where you'll open the folder of your cloned repository, you can view all the files in here.
 
+
+Step. 6
+
+    To run the files, in terminal have your tab with the virtual environment open and run `python -m flask --app app run`
+
+Step. 7
+
+    In the second tab, run python main.py. This tab will allow you to run through the functionality where you can view the books available, leave a review for a book, view the waitlist for upcoming books, and also purchase a book. 
+
+Step. 8
+
+    To exit the program, enter exit when you're prompted for what you'd like to do next. 
+    
