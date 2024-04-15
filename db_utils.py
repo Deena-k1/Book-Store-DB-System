@@ -19,14 +19,14 @@ def _connect_to_db(db_name):
 
 
 # #functions to interact with SQL databases go here. Includes SQL queries
-
+# Function to fetch all waitlisted books, using a join via the database. 
 def get_all_waitlisted_books():
     waitlist = []
     try: 
         db_name = 'book_store_db'
-        db_connection = _connect_to_db(db_name)
+        db_connection = _connect_to_db(db_name) #connect to database
         cur = db_connection.cursor()
-        
+        # Query the database
         query = """
             SELECT b.title, b.author, s.waitlist_date, s.waiting_days
             FROM books b
@@ -36,7 +36,7 @@ def get_all_waitlisted_books():
             
         cur.execute(query)
         
-        
+        # fetching the info
         result = cur.fetchall()  
         for row in result:
             waitlist.append({
@@ -46,15 +46,15 @@ def get_all_waitlisted_books():
             'waiting_days': row[3]
         })
 
-        
+        #checking for errors
     except Exception:
         raise DbConnectionError('Failed to fetch waitlist books')
-        
+        #closing connection
     finally: 
         if db_connection:
             cur.close()
             db_connection.close()
-    
+    # the output
     return waitlist
             
 

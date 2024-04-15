@@ -45,4 +45,3 @@ Step. 7
 Step. 8
 
     To exit the program, enter exit when you're prompted for what you'd like to do next. 
-    
