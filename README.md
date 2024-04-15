@@ -1,19 +1,14 @@
 # Read First Girls 
 ### **Your gateway to reading _lots_ of books**
 
-
-
 ## All documentation can be found in the ['docs'](https://github.com/Deena-k1/Git.assignment/tree/main/docs) file. 
 Here is how we'd recommend working through those files: 
 - [HowToConfig](https://github.com/Deena-k1/Git.assignment/blob/main/docs/HowToConfig.md)
 - [SetUpDB](https://github.com/Deena-k1/Git.assignment/blob/main/docs/SetUpDB.md)
 - Continue with [**README**](https://github.com/Deena-k1/Git.assignment/blob/main/README.md)
-
-## What this project does, how to run it, and what it should do
-
-
-
 <!--- Add your GitHub username, link to page --->
+
+
 ### Who we are and where to find out more about us:
 
 * **Kirstie Ross** - [GitHub profile krossco](https://github.com/krossco)
@@ -24,6 +19,25 @@ Here is how we'd recommend working through those files:
 
 * **Deena Khan** - [GitHub profile Deena-k1](https://github.com/Deena-k1)
 * **Alexandria Kerr** - [GitHub profile AlexiaKerr](https://github.com/AlexiaKerr)
+
+
+
+## What this project does, how to run it, and what it should do
+The aim of this project is to create a system for a bookstore, that provides functionalities for customers
+to interact with the bookstore's collection of books, leave ratings and reviews, view waitlists, and place orders.
+
+### Key Features:
+View Book Collection: Customers can browse through the bookstore's collection of available books.
+Review a Book: Customers can provide ratings  for books in the system, storing it in the data base.
+Waitlist: Customers can view the waitlist for books that are currently unavailable.
+Ordering: Customers can place orders for books they wish to purchase.
+Stock Management: The system automatically updates the stock of books based on customer orders in the data base.
+
+### Tools and Frameworks:
+Backend Development: Utilised Python for server-side logic and API development.
+Web Framework: We used Flask, a Python web framework, for building the backend API.
+Database Management: We used MySQL as the database management system for storing and managing book-related data.
+
 
 ### Questions answered from Assignment: 
 
