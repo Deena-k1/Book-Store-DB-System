@@ -1,6 +1,7 @@
 # Read First Girls 
 ### **Your gateway to reading _lots_ of books**
 
+
 ## All documentation can be found in the ['docs'](https://github.com/Deena-k1/Git.assignment/tree/main/docs) file. 
 Here is how we'd recommend working through those files: 
 - [HowToConfig](https://github.com/Deena-k1/Git.assignment/blob/main/docs/HowToConfig.md)
@@ -104,5 +105,14 @@ Throughout this project we did a mixture of group programming, as well as workin
 - Slack - To communnicate with each other 
 - Word Doc - To brainstorm our ideas and set our meeting agenda 
 - Trello - To allocate tasks 
-- Zoom - To set up meetings 
+- Zoom - To set up meetings
+
+
+<img src="https://github.com/Deena-k1/Git.assignment/assets/60015635/073fdde0-6867-4d6f-bc17-20745afda4b9" width="300" height="200">
+
+<img src="https://github.com/Deena-k1/Git.assignment/assets/60015635/3097db68-23ed-4b40-a146-43e13b2c2dc0" width="300" height="200">
+
+<img src="https://github.com/Deena-k1/Git.assignment/assets/60015635/b5aaab50-67ac-49a2-9e9e-058347ea8fce" width="300" height="200">
+
+
 
