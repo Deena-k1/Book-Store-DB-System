@@ -27,16 +27,16 @@ The aim of this project is to create a system for a bookstore, that provides fun
 to interact with the bookstore's collection of books, leave ratings and reviews, view waitlists, and place orders.
 
 ### Key Features:
-View Book Collection: Customers can browse through the bookstore's collection of available books.
-Review a Book: Customers can provide ratings  for books in the system, storing it in the data base.
-Waitlist: Customers can view the waitlist for books that are currently unavailable.
-Ordering: Customers can place orders for books they wish to purchase.
-Stock Management: The system automatically updates the stock of books based on customer orders in the data base.
+* View Book Collection: Customers can browse through the bookstore's collection of available books.
+* Review a Book: Customers can provide ratings  for books in the system, storing it in the data base.
+* Waitlist: Customers can view the waitlist for books that are currently unavailable.
+* Ordering: Customers can place orders for books they wish to purchase.
+* Stock Management: The system automatically updates the stock of books based on customer orders in the data base.
 
 ### Tools and Frameworks:
-Backend Development: Utilised Python for server-side logic and API development.
-Web Framework: We used Flask, a Python web framework, for building the backend API.
-Database Management: We used MySQL as the database management system for storing and managing book-related data.
+* Backend Development: Utilised Python for server-side logic and API development.
+* Web Framework: We used Flask, a Python web framework, for building the backend API.
+* Database Management: We used MySQL as the database management system for storing and managing book-related data.
 
 
 ### Questions answered from Assignment: 
