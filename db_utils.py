@@ -224,7 +224,7 @@ def get_available_books():
             # print("DB connection is closed")
 
 
-
+#main file including all the functions created in this utils file
 def main():  
     print(get_available_books())
     get_all_waitlisted_books()

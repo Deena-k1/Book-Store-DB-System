@@ -119,7 +119,7 @@ def userOptionSelect(optionSelect):
     else: 
         print('You have input an invalid option, please select one of the valid choices')
 
-#ADD display_available_books() TO RUN()
+#Our run function and what the user sees as their greeting
 def run():
     print('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*')
     print('Welcome to ReadFirstGirls - your online bookstore')
