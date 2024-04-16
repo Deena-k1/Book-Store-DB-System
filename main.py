@@ -1,6 +1,6 @@
 import requests
 import json
-from db_utils import get_all_waitlisted_books, all_books, reader_review, update_stock_quantity, get_available_books
+from db_utils import all_books, reader_review, update_stock_quantity, get_available_books
 
 ### Functions to connect to app endpoints with user input ###
 
@@ -29,7 +29,13 @@ def add_new_order(customer_name, book_id, delivery):
 
     if result.status_code == 200:
         update_stock_quantity(book_id)
-    return result.json()    
+    return result.json()   
+
+#function to add in endpoint for the user to access the waitlisted books information
+def get_waitlist_books_data():
+        endpoint = 'http://127.0.0.1:5000/waitlist'
+        response = requests.get(endpoint)  
+        return response.json()
 
 #function to transform available books data into a readable list
 def display_available_books():
@@ -76,7 +82,7 @@ def handle_review():
 # Using if elif else statements for the different options and to validate the user input as a correct option
 def userOptionSelect(optionSelect):
     if optionSelect == 'waitlist':
-        waitlisted_books = get_all_waitlisted_books()
+        waitlisted_books = get_waitlist_books_data()
         for book in waitlisted_books:
             print("Title:", book['title'])
             print("Author:", book['author'])
@@ -113,7 +119,7 @@ def userOptionSelect(optionSelect):
     else: 
         print('You have input an invalid option, please select one of the valid choices')
 
-#ADD display_available_books() TO RUN()
+#Our run function and what the user sees as their greeting
 def run():
     print('*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*')
     print('Welcome to ReadFirstGirls - your online bookstore')
@@ -137,5 +143,3 @@ def run():
 
 if __name__ == '__main__':
     run()
-
-      
