@@ -29,7 +29,13 @@ def add_new_order(customer_name, book_id, delivery):
 
     if result.status_code == 200:
         update_stock_quantity(book_id)
-    return result.json()    
+    return result.json()   
+
+
+def get_waitlist_books_data():
+        endpoint = 'http://127.0.0.1:5000/waitlist'
+        response = requests.get(endpoint)   #get response from endpoint using requests module
+        return response.json()  #convert to json format 
 
 #function to transform available books data into a readable list
 def display_available_books():
