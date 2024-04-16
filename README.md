@@ -42,11 +42,11 @@ to interact with the bookstore's collection of books, leave ratings and reviews,
 
 ### Questions answered from Assignment: 
 
-[.gitignore](https://github.com/Deena-k1/Git.assignment/blob/main/.gitignore) - This folder is used to add any files you wish to not commit. 
+[.gitignore](https://github.com/Deena-k1/Git.assignment/blob/main/.gitignore) - This folder is used to add any files you wish to not commit. You can use it to take any files you dont want to track, pop their file name in the .gitignore file. You can edit this with a text editor to include the files or use `git ignore add <filename>` in the terminal.
 
 [requirements.txt](https://github.com/Deena-k1/Git.assignment/blob/main/docs/requirements.txt) - requirements.txt is a file that contains a list of packages or libraries needed to work on a project that can all be installed with the file. You can use the following code to install all the libraries and packages in the file:
 `pip install -r /path/to/requirements.txt`
-(Insert your own file path leading to the requirements.txt file) 
+(Insert your own file path leading to the requirements.txt file)
 
 
 
